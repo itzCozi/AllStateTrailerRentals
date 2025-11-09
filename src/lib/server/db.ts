@@ -48,3 +48,9 @@ export function addBooking(b: {
   writeAll(list);
   return id;
 }
+
+export function getBookings(): Booking[] {
+  return readAll();
+}
+
+export type { Booking };
