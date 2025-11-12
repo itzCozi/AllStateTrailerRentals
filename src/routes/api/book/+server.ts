@@ -13,7 +13,15 @@ const schema = z.object({
   notes: z.string().optional().default(""),
 });
 
-export const POST: RequestHandler = async ({ request }) => {
+const COOKIE_NAME = "accepted_terms_v1";
+
+export const POST: RequestHandler = async ({ request, cookies }) => {
+  const accepted = cookies.get(COOKIE_NAME) === "true";
+  if (!accepted) {
+    return new Response(JSON.stringify({ error: "You must accept the terms before reserving." }), {
+      status: 403
+    });
+  }
   const json = await request.json().catch(() => null);
   if (!json)
     return new Response(JSON.stringify({ error: "Invalid JSON" }), {

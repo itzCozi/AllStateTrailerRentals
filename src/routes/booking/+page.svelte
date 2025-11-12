@@ -90,6 +90,11 @@
       <textarea class="min-h-[120px] rounded-md border border-input bg-background px-3 py-2 text-sm" name="notes" bind:value={notes} placeholder="Anything we should know?"></textarea>
     </div>
 
-    <Button type="submit" size="lg">Reserve</Button>
+    <div class="flex items-center justify-between">
+      <p class="text-sm text-muted-foreground">
+        By reserving, you agree to our <a class="underline" href="/terms?redirect=/booking">Terms</a>.
+      </p>
+      <Button type="submit" size="lg">Reserve</Button>
+    </div>
   </form>
 </section>
