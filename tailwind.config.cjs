@@ -22,7 +22,7 @@ module.exports = {
         },
         muted: {
           DEFAULT: "hsl(210 40% 96.1%)",
-          foreground: "hsl(215.4 16.3% 46.9%)",
+          foreground: "hsl(215.4 16.3% 25%)",
         },
         accent: {
           DEFAULT: "hsl(210 40% 96.1%)",

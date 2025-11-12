@@ -1,5 +1,38 @@
 <script lang="ts">
   import Button from '$components/ui/button.svelte';
+  import Carousel from '$components/ui/carousel.svelte';
+  
+  const vehicleImages = {
+    dump: [
+      '/DUMP1.jpg',
+      '/DUMP2.jpg',
+    ],
+    carHauler: [
+      '/CAR1.jpg',
+      '/CAR2.jpg',
+    ],
+    rv: [
+      '/RV1.jpg',
+      '/RV2.jpg',
+      '/RV3.jpg',
+      '/RV4.jpg',
+      '/RV5.jpg',
+      '/RV6.jpg',
+      '/RV7.jpg',
+      '/RV8.jpg',
+      '/RV9.jpg',
+      '/RV10.jpg',
+      '/RV11.jpg',
+      '/RV12.jpg',
+      '/RV13.jpg',
+      '/RV14.jpg',
+      '/RV15.jpg',
+      '/RV16.jpg',
+      '/RV17.jpg',
+      '/RV18.jpg',
+      '/RV19.jpg',
+    ]
+  };
 </script>
 
 <section class="border-b bg-gradient-to-b from-white to-slate-50">
@@ -25,12 +58,12 @@
   <h2 class="mb-8 text-2xl font-semibold">Our Fleet</h2>
   <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
     {#each [
-      { title: 'Dump Trailer', desc: 'Perfect for cleanups and hauling.', cta: '/booking?type=dump' },
-      { title: 'Car Hauler', desc: 'Two 16-18ft car haulers available.', cta: '/booking?type=car-hauler' },
-      { title: 'RV', desc: 'Two RVs for weekend getaways.', cta: '/booking?type=rv' }
+      { title: 'Dump Trailer', desc: 'Perfect for cleanups and hauling.', cta: '/booking?type=dump', images: vehicleImages.dump },
+      { title: 'Car Hauler', desc: 'Two 16-18ft car haulers available.', cta: '/booking?type=car-hauler', images: vehicleImages.carHauler },
+      { title: 'RV', desc: 'Two RVs for weekend getaways.', cta: '/booking?type=rv', images: vehicleImages.rv }
     ] as item}
       <div class="rounded-lg border bg-white p-5 shadow-sm">
-        <div class="aspect-video rounded-md bg-slate-100"></div>
+        <Carousel images={item.images} />
         <h3 class="mt-4 font-semibold">{item.title}</h3>
         <p class="text-muted-foreground text-sm">{item.desc}</p>
         <div class="mt-4">

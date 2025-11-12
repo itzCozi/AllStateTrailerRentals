@@ -1,5 +1,6 @@
 <script lang="ts">
   import '../app.css';
+  import Link from '$lib/components/ui/link.svelte';
   // SEO defaults and global styles set here.
 </script>
 
@@ -19,10 +20,10 @@
         <span class="text-lg">All State Trailer Rentals</span>
       </a>
       <nav class="flex items-center gap-6 text-sm">
-        <a href="/" class="hover:text-primary">Home</a>
-        <a href="/booking" class="hover:text-primary">Book</a>
-        <a href="/#fleet" class="hover:text-primary">Fleet</a>
-        <a href="/#contact" class="hover:text-primary">Contact</a>
+        <Link href="/">Home</Link>
+        <Link href="/booking">Book</Link>
+        <Link href="/#fleet">Fleet</Link>
+        <Link href="/#contact">Contact</Link>
       </nav>
     </div>
   </header>
@@ -33,8 +34,8 @@
     <div class="container flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
       <p class="text-muted-foreground">© {new Date().getFullYear()} All State Trailer Rentals. Serving NC & SC.</p>
       <div class="flex gap-4">
-        <a class="hover:text-primary" href="/sitemap.xml">Sitemap</a>
-        <a class="hover:text-primary" href="/robots.txt">Robots</a>
+        <Link href="/sitemap.xml">Sitemap</Link>
+        <Link href="/robots.txt">Robots</Link>
       </div>
     </div>
   </footer>
