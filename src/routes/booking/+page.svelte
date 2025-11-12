@@ -6,11 +6,13 @@
   import DateTime from '$components/ui/datetime.svelte';
   import { onMount } from 'svelte';
   import { page } from '$app/stores';
+  import { rvVariants } from '$lib/data/vehicles';
 
   let name = '';
   let email = '';
   let phone = '';
   let type = 'dump';
+  let variant: string | null = null;
   let date = '';
   let time = '';
   let notes = '';
@@ -20,14 +22,23 @@
     { value: 'rv', label: 'RV' }
   ];
 
-  $: type = $page.url.searchParams.get('type') ?? type;
+  const rvItems = rvVariants.map((v) => ({ value: v.label, label: `${v.name}` }));
+
+  onMount(() => {
+    const initial = $page.url.searchParams.get('type');
+    if (initial) type = initial;
+    const v = $page.url.searchParams.get('variant');
+    if (v) variant = v;
+  });
 
   async function submit(e: SubmitEvent) {
     e.preventDefault();
+    const body: any = { name, email, phone, type, date, time, notes };
+    if (type === 'rv' && variant) body.variant = variant;
     const res = await fetch('/api/book', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name, email, phone, type, date, time, notes })
+      body: JSON.stringify(body)
     });
     if (res.ok) {
       location.href = '/booking/success';
@@ -49,11 +60,11 @@
     <div class="grid gap-2 sm:grid-cols-2">
       <div>
         <Label forId="email">Email</Label>
-        <Input type="email" name="email" bind:value={email} required placeholder="you@example.com" />
+        <Input type="email" name="email" bind:value={email} required placeholder="youremail@mail.com" />
       </div>
       <div>
         <Label forId="phone">Phone</Label>
-        <Input type="tel" name="phone" bind:value={phone} required placeholder="(555) 555-5555" />
+        <Input type="tel" name="phone" bind:value={phone} required placeholder="(000) 000-0000" />
       </div>
     </div>
 
@@ -61,6 +72,13 @@
       <Label forId="type">Trailer Type</Label>
       <Select name="type" bind:bindValue={type} {items} />
     </div>
+
+    {#if type === 'rv'}
+      <div class="grid gap-2">
+        <Label forId="variant">RV Model</Label>
+        <Select name="variant" bind:bindValue={variant} items={rvItems} />
+      </div>
+    {/if}
 
     <div class="grid gap-2">
       <Label forId="datetime">Pickup Date & Time</Label>

@@ -13,6 +13,7 @@ type Booking = {
   email: string;
   phone: string;
   type: string;
+  variant?: string;
   date: string;
   time: string;
   notes?: string;
@@ -40,6 +41,7 @@ export function addBooking(b: {
   date: string;
   time: string;
   notes?: string;
+  variant?: string;
 }) {
   const list = readAll();
   const id = list.length ? list[list.length - 1].id + 1 : 1;

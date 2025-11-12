@@ -12,5 +12,3 @@ services:
       # Persist JSON files used as the database (bind mount to host path)
       - ./database:/app/database
     restart: unless-stopped
-
-

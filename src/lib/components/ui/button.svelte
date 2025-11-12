@@ -1,6 +1,6 @@
 <script lang="ts">
   export let variant: 'default' | 'secondary' | 'outline' | 'ghost' = 'default';
-  export let size: 'sm' | 'md' | 'lg' = 'md';
+  export let size: 'sm' | 'md' | 'lg' | 'full' | 'w-full' = 'md';
   export let type: 'button' | 'submit' | 'reset' = 'button';
   export let href: string | undefined = undefined;
   export let disabled = false;
@@ -12,11 +12,17 @@
     outline: 'border border-input bg-background hover:bg-accent hover:text-accent-foreground',
     ghost: 'hover:bg-accent hover:text-accent-foreground'
   } as const;
-  const sizes = { sm: 'h-9 px-3 text-sm', md: 'h-10 px-4', lg: 'h-11 px-6 text-base' } as const;
+  const sizes = {
+    sm: 'h-9 px-3 text-sm',
+    md: 'h-10 px-4',
+    lg: 'h-11 px-6 text-base',
+    full: 'w-full h-10 px-4',
+    'w-full': 'w-full h-10 px-4'
+  } as const;
 </script>
 
 {#if href}
-  <a href={href} class={`${base} ${variants[variant]} ${sizes[size]}`} aria-disabled={disabled}><slot /></a>
+  <a href={href} class={`${base} ${variants[variant]} ${sizes[size]}`} aria-disabled={disabled} on:click {...$$restProps}><slot /></a>
 {:else}
-  <button type={type} class={`${base} ${variants[variant]} ${sizes[size]}`} disabled={disabled}><slot /></button>
+  <button type={type} class={`${base} ${variants[variant]} ${sizes[size]}`} disabled={disabled} on:click {...$$restProps}><slot /></button>
 {/if}

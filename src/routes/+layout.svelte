@@ -1,7 +1,6 @@
 <script lang="ts">
   import '../app.css';
   import Link from '$lib/components/ui/link.svelte';
-  // SEO defaults and global styles set here.
 </script>
 
 <svelte:head>

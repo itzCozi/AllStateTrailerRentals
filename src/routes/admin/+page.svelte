@@ -35,7 +35,6 @@
       if (result.type === 'success') {
         const r: any = result.data;
         if (r.success) {
-          // After successful reset, switch back to login
           mode = 'login';
         } else {
           registerError = r.message || 'Reset failed';

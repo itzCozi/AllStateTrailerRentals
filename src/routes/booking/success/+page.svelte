@@ -1,4 +1,4 @@
-<section class="container py-16">
+<section class="container py-16 justify-center flex">
   <div class="max-w-xl rounded-lg border bg-white p-8 shadow-sm">
     <h1 class="text-2xl font-semibold">Booking Confirmed</h1>
     <p class="mt-2 text-muted-foreground">Thanks for reserving with All State Trailer Rentals. We'll be in touch to confirm details.</p>

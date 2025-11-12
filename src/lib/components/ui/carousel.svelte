@@ -51,7 +51,7 @@
             on:click={() => goToSlide(index)}
             class="h-2 w-2 rounded-full transition {index === currentIndex ? 'bg-white' : 'bg-white/50'}"
             aria-label="Go to image {index + 1}"
-          />
+          ></button>
         {/each}
       </div>
     {/if}

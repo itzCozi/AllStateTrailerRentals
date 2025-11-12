@@ -7,6 +7,7 @@ const schema = z.object({
   email: z.string().email(),
   phone: z.string().min(7),
   type: z.enum(["dump", "car-hauler", "rv"]),
+  variant: z.string().optional(),
   date: z.string().min(8),
   time: z.string().min(4),
   notes: z.string().optional().default(""),
@@ -27,6 +28,7 @@ export const POST: RequestHandler = async ({ request }) => {
       date: string;
       time: string;
       notes: string;
+      variant?: string;
     };
     const id = addBooking(data);
     return new Response(JSON.stringify({ id }), { status: 201 });
