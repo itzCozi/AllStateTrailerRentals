@@ -16,10 +16,10 @@ export const actions: Actions = {
       httpOnly: true,
       sameSite: "lax",
       maxAge: 60 * 60 * 24 * 180,
-      secure: url.protocol === "https:"
+      secure: url.protocol === "https:",
     });
     throw redirect(303, redirectTo);
-  }
+  },
 };
 
 export const load: ServerLoad = async ({ cookies }) => {

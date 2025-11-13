@@ -77,7 +77,6 @@
   function onCalendarDay(e: CustomEvent<{ date: string; bookings: typeof bookings }>) {
     const { bookings: dayBookings } = e.detail || {} as any;
     if (!dayBookings || dayBookings.length === 0) return;
-    // If multiple bookings exist for the day, open the first for now
     openDetails(dayBookings[0]);
   }
 

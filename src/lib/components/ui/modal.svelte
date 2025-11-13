@@ -2,9 +2,11 @@
   export let open = false;
   export let title: string | undefined = undefined;
   export let maxWidth: 'sm' | 'md' | 'lg' | 'xl' = 'lg';
+  export let maxHeightVh: number = 90;
   export let closeOnOverlay = true;
   export let onClose: (() => void) | undefined;
   export let transitionDuration: number = 150;
+    export let zIndex: number = 50;
 
   import { fade, scale } from 'svelte/transition';
   import { X } from 'lucide-svelte';
@@ -30,14 +32,15 @@
 </script>
 
 {#if open}
-  <div class="fixed inset-0 z-50 flex items-center justify-center p-4">
+  <div class="fixed inset-0 flex items-center justify-center p-4" style={`z-index: ${zIndex}` }>
     <div class="absolute inset-0 bg-black/50" on:click={() => closeOnOverlay && onClose?.()} aria-hidden="true" transition:fade={{ duration: transitionDuration }}></div>
     <div
       use:escAction
       role="dialog"
       aria-modal="true"
       aria-label={title}
-      class={`relative z-10 w-full ${maxWidth === 'sm' ? 'max-w-sm' : maxWidth === 'md' ? 'max-w-md' : maxWidth === 'lg' ? 'max-w-2xl' : 'max-w-4xl'} overflow-hidden rounded-lg border bg-white shadow-xl`}
+      class={`relative z-10 w-full ${maxWidth === 'sm' ? 'max-w-sm' : maxWidth === 'md' ? 'max-w-md' : maxWidth === 'lg' ? 'max-w-2xl' : 'max-w-4xl'} overflow-hidden rounded-lg border bg-white shadow-xl flex flex-col`}
+      style={`max-height: ${maxHeightVh}vh`}
       transition:scale={{ duration: transitionDuration, start: 0.96, opacity: 0.9 }}
     >
       <div class="flex items-center justify-between border-b p-4">
@@ -46,7 +49,7 @@
           <X size={25} />
         </button>
       </div>
-      <div class="p-4">
+      <div class="p-4 overflow-auto">
         <slot />
       </div>
     </div>

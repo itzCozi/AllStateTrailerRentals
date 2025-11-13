@@ -18,9 +18,12 @@ const COOKIE_NAME = "accepted_terms_v1";
 export const POST: RequestHandler = async ({ request, cookies }) => {
   const accepted = cookies.get(COOKIE_NAME) === "true";
   if (!accepted) {
-    return new Response(JSON.stringify({ error: "You must accept the terms before reserving." }), {
-      status: 403
-    });
+    return new Response(
+      JSON.stringify({ error: "You must accept the terms before reserving." }),
+      {
+        status: 403,
+      },
+    );
   }
   const json = await request.json().catch(() => null);
   if (!json)
@@ -54,10 +57,16 @@ export const POST: RequestHandler = async ({ request, cookies }) => {
     }
     const selectedDate = new Date(y, m - 1, d);
     const now = new Date();
-    const todayMidnight = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    const todayMidnight = new Date(
+      now.getFullYear(),
+      now.getMonth(),
+      now.getDate(),
+    );
     if (!(selectedDate.getTime() > todayMidnight.getTime())) {
       return new Response(
-        JSON.stringify({ error: "Please choose a pickup date that is after today." }),
+        JSON.stringify({
+          error: "Please choose a pickup date that is after today.",
+        }),
         { status: 400 },
       );
     }

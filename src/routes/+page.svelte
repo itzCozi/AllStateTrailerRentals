@@ -2,6 +2,7 @@
   import Button from '$components/ui/button.svelte';
   import Carousel from '$components/ui/carousel.svelte';
   import Modal from '$components/ui/modal.svelte';
+  import { ChevronLeft, ChevronRight } from 'lucide-svelte';
   import { rvVariants } from '$lib/data/vehicles';
   
   type TrailerKey = 'dump' | 'carHauler' | 'rv';
@@ -116,6 +117,27 @@
   let active: Trailer | null = null;
   let variantIndex = 0;
 
+  let lightboxOpen = false;
+  let lightboxImages: string[] = [];
+  let lightboxIndex = 0;
+
+  function openLightbox(images: string[], index: number) {
+    lightboxImages = images;
+    lightboxIndex = index;
+    lightboxOpen = true;
+  }
+  function closeLightbox() {
+    lightboxOpen = false;
+  }
+  function nextLightbox() {
+    if (lightboxImages.length === 0) return;
+    lightboxIndex = (lightboxIndex + 1) % lightboxImages.length;
+  }
+  function prevLightbox() {
+    if (lightboxImages.length === 0) return;
+    lightboxIndex = (lightboxIndex - 1 + lightboxImages.length) % lightboxImages.length;
+  }
+
   function openDetails(t: Trailer) {
     active = t;
     variantIndex = 0;
@@ -156,7 +178,7 @@
   <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
     {#each trailers as item}
       <div class="rounded-lg border bg-white p-5 shadow-sm">
-        <Carousel images={item.images} />
+        <Carousel images={item.images} on:expand={(e) => openLightbox(e.detail.images, e.detail.index)} />
         <h3 class="mt-4 font-semibold">{item.title}</h3>
         <p class="text-muted-foreground text-sm">{item.desc}</p>
         <div class="mt-4">
@@ -174,6 +196,46 @@
   </div>
 </section>
 
+<Modal
+  open={lightboxOpen}
+  title="Image Preview"
+  onClose={closeLightbox}
+  maxWidth="lg"
+  maxHeightVh={70}
+  zIndex={70}
+>
+  {#if lightboxImages.length}
+    <div class="flex flex-col gap-3">
+      <div class="relative w-full overflow-hidden rounded-md bg-black/5">
+        <img
+          src={lightboxImages[lightboxIndex]}
+          alt={`Image ${lightboxIndex + 1}`}
+          class="mx-auto max-h-[60vh] w-auto max-w-full object-contain"
+        />
+        {#if lightboxImages.length > 1}
+          <button
+            class="absolute left-2 top-1/2 -translate-y-1/2 rounded-full bg-white/90 p-2 shadow border hover:bg-white"
+            aria-label="Previous image"
+            on:click={prevLightbox}
+          >
+            <ChevronLeft size={22} />
+          </button>
+          <button
+            class="absolute right-2 top-1/2 -translate-y-1/2 rounded-full bg-white/90 p-2 shadow border hover:bg-white"
+            aria-label="Next image"
+            on:click={nextLightbox}
+          >
+            <ChevronRight size={22} />
+          </button>
+        {/if}
+      </div>
+      <div class="text-center text-sm text-muted-foreground">
+        {lightboxIndex + 1} / {lightboxImages.length}
+      </div>
+    </div>
+  {/if}
+</Modal>
+
   <Modal
   open={showDetails}
   title={active ? `${active.title}${active.variants ? ` - ${active.variants[variantIndex]?.name}` : ''}` : undefined}
@@ -186,10 +248,10 @@
       <div class="flex flex-col gap-6 items-center">
       {#if active.variants}
         {#key variantIndex}
-          <Carousel images={active.variants[variantIndex].images} />
+          <Carousel images={active.variants[variantIndex].images} on:expand={(e) => openLightbox(e.detail.images, e.detail.index)} />
         {/key}
       {:else}
-        <Carousel images={active.images} />
+        <Carousel images={active.images} on:expand={(e) => openLightbox(e.detail.images, e.detail.index)} />
       {/if}
       {#if active.variants}
         <div class="md:col-span-2 flex items-center justify-between">

@@ -38,5 +38,3 @@
     </div>
   </footer>
 </div>
-
-<!-- global styles are imported via script so Tailwind gets processed by PostCSS -->

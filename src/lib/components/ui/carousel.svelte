@@ -1,8 +1,10 @@
 <script lang="ts">
   export let images: string[] = [];
   import { ChevronLeft, ChevronRight } from 'lucide-svelte';
+  import { createEventDispatcher } from 'svelte';
   
   let currentIndex = 0;
+  const dispatch = createEventDispatcher<{ expand: { index: number; images: string[] } }>();
   
   function next() {
     currentIndex = (currentIndex + 1) % images.length;
@@ -19,11 +21,18 @@
 
 <div class="relative aspect-video overflow-hidden rounded-md bg-slate-100">
   {#if images.length > 0}
-    <img 
-      src={images[currentIndex]} 
-      alt="Vehicle {currentIndex + 1}"
-      class="h-full w-full object-cover"
-    />
+    <button
+      type="button"
+      class="h-full w-full cursor-zoom-in"
+      aria-label="Expand image"
+      on:click={() => dispatch('expand', { index: currentIndex, images })}
+    >
+      <img 
+        src={images[currentIndex]} 
+        alt="Vehicle {currentIndex + 1}"
+        class="h-full w-full object-cover"
+      />
+    </button>
     
     {#if images.length > 1}
       <button

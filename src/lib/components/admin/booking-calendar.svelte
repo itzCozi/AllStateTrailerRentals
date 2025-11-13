@@ -90,7 +90,7 @@
   $: start = firstDayOfMonth(year, month);
   $: dim = daysInMonth(year, month);
   $: totalCells = start + dim;
-  $: trailing = 42 - totalCells; // pad to 6 rows (6*7)
+  $: trailing = 42 - totalCells;
 </script>
 
 <div class="rounded-lg border p-4">

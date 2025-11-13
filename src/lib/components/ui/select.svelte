@@ -73,7 +73,6 @@
 </script>
 
 <div class="relative" bind:this={container}>
-  <!-- Preserve form submission -->
   {#if name}
     <input type="hidden" {name} value={bindValue ?? selectedItem()?.value ?? ''} {required} />
   {/if}
@@ -90,7 +89,6 @@
     on:keydown={onKeyDown}
   >
   <span>{selectedItemLabel ?? 'Select...'}</span>
-    <!-- Chevron -->
     <ChevronDown size={18} class="ml-2 opacity-70" />
   </button>
 
