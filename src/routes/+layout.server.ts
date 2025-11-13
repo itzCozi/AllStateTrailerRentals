@@ -6,13 +6,13 @@ export const load: LayoutServerLoad = async ({ url }) => {
   const canonical = origin + url.pathname;
 
   const defaults = {
-    title: "Trailer Rentals in NC & SC | All State Trailer Rentals",
+    title: "Trailer Rentals in NC & SC | AllState Trailer Rentals",
     description:
       "Dump trailers, car haulers, and RV rentals serving North Carolina and South Carolina. Easy online booking.",
   };
 
   return {
-    siteName: "All State Trailer Rentals",
+    siteName: "AllState Trailer Rentals",
     origin,
     path,
     canonical,

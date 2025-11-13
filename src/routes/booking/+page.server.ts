@@ -11,7 +11,7 @@ export const load: ServerLoad = async ({ cookies, url }) => {
   }
   return {
     seo: {
-      title: "Book a Trailer | All State Trailer Rentals",
+      title: "Book a Trailer | AllState Trailer Rentals",
       description:
         "Reserve a dump trailer, car hauler, or RV online in minutes.",
     },

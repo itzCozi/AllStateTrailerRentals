@@ -152,7 +152,7 @@
 <section class="border-b bg-gradient-to-b from-white to-slate-100/60">
   <div class="container grid gap-8 py-16 md:grid-cols-2 md:py-24">
     <div class="flex flex-col justify-center gap-6">
-      <h1 class="text-4xl font-bold tracking-tight sm:text-5xl">All State Trailer Rentals</h1>
+      <h1 class="text-4xl font-bold tracking-tight sm:text-5xl">AllState Trailer Rentals</h1>
       <p class="text-muted-foreground text-lg">Dump trailer, car hauler, and RV rentals serving North Carolina and South Carolina. Book online in minutes.</p>
       <div class="flex gap-4">
         <Button href="/booking" size="lg">Book Now</Button>
@@ -164,10 +164,10 @@
         <li>NC & SC coverage</li>
       </ul>
     </div>
-    <div class="rounded-xl border bg-white shadow-sm overflow-hidden p-4 sm:p-6 flex items-center justify-center">
+    <div class="rounded-xl border bg-white shadow overflow-hidden p-4 sm:p-6 flex items-center justify-center">
       <img
         src="/large.png"
-        alt="All State Trailer Rentals"
+        alt="AllState Trailer Rentals"
         class="max-w-full h-auto object-contain"
         loading="eager"
         decoding="sync"
@@ -186,7 +186,7 @@
   <h2 class="mb-8 text-2xl font-semibold">Our Fleet</h2>
   <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
     {#each trailers as item}
-      <div class="rounded-lg border bg-white p-5 shadow-sm">
+      <div class="rounded-lg border bg-white p-5 shadow">
         <Carousel images={item.images} on:expand={(e) => openLightbox(e.detail.images, e.detail.index)} />
         <h3 class="mt-4 font-semibold">{item.title}</h3>
         <p class="text-muted-foreground text-sm">{item.desc}</p>
@@ -222,20 +222,29 @@
           class="mx-auto max-h-[60vh] w-auto max-w-full object-contain"
         />
         {#if lightboxImages.length > 1}
+<button
+        on:click={prevLightbox}
+        class="absolute left-2 top-1/2 -translate-y-1/2 rounded-full bg-white/80 p-2 shadow-md transition border duration-300 hover:bg-white/95"
+        aria-label="Previous image"
+      >
+        <ChevronLeft size={20} />
+      </button>
+<button
+        on:click={nextLightbox}
+        class="absolute right-2 top-1/2 -translate-y-1/2 rounded-full bg-white/80 p-2 shadow-md transition border duration-300 hover:bg-white/95"
+        aria-label="Next image"
+      >
+        <ChevronRight size={20} />
+      </button>
+      <div class="absolute bottom-2 left-1/2 flex -translate-x-1/2 gap-2">
+        {#each lightboxImages as _, index}
           <button
-            class="absolute left-2 top-1/2 -translate-y-1/2 rounded-full bg-white/90 p-2 shadow border hover:bg-white"
-            aria-label="Previous image"
-            on:click={prevLightbox}
-          >
-            <ChevronLeft size={22} />
-          </button>
-          <button
-            class="absolute right-2 top-1/2 -translate-y-1/2 rounded-full bg-white/90 p-2 shadow border hover:bg-white"
-            aria-label="Next image"
-            on:click={nextLightbox}
-          >
-            <ChevronRight size={22} />
-          </button>
+            on:click={() => (lightboxIndex = index)}
+            class="h-2 w-2 rounded-full transition {index === lightboxIndex ? 'bg-white' : 'bg-white/50'}"
+            aria-label={`Go to image ${index + 1}`}
+          ></button>
+        {/each}
+      </div>
         {/if}
       </div>
       <div class="text-center text-sm text-muted-foreground">

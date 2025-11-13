@@ -12,7 +12,7 @@
   };
 
   $: currentSeo = {
-    title: $page.data?.seo?.title ?? data.seo?.title ?? 'All State Trailer Rentals',
+    title: $page.data?.seo?.title ?? data.seo?.title ?? 'AllState Trailer Rentals',
     description: $page.data?.seo?.description ?? data.seo?.description ?? 'Dump trailers, car haulers, and RV rentals serving NC & SC. Book online.',
     image: $page.data?.seo?.image ?? data.seo?.image ?? null
   };
@@ -54,19 +54,13 @@
   <meta property="og:title" content={currentSeo.title} />
   <meta property="og:description" content={currentSeo.description} />
   <meta property="og:url" content={ogUrl} />
-  {#if currentSeo.image}
-    <meta property="og:image" content={currentSeo.image} />
-    <meta property="og:image:alt" content={siteName} />
-  {/if}
   <meta property="og:image" content={`${data.origin}/large.png`} />
-  <meta property="og:image:alt" content={siteName} />
-  <meta property="og:image" content={`${data.origin}/text.png`} />
   <meta property="og:image:alt" content={siteName} />
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content={currentSeo.title} />
   <meta name="twitter:description" content={currentSeo.description} />
-  <meta name="twitter:image" content={currentSeo.image ?? `${data.origin}/large.png`} />
+  <meta name="twitter:image" content={`${data.origin}/large.png`} />
 
   <script type="application/ld+json">{JSON.stringify(jsonLdOrg)}</script>
   {#if $page.url.pathname === '/' || $page.url.pathname.startsWith('/booking')}
@@ -92,7 +86,7 @@
   </main>
   <footer class="border-t py-8 text-sm">
     <div class="container flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-      <p class="text-muted-foreground">© {new Date().getFullYear()} All State Trailer Rentals. Serving NC & SC.</p>
+      <p class="text-muted-foreground">© {new Date().getFullYear()} AllState Trailer Rentals. Serving NC & SC.</p>
       <div class="flex gap-4">
         <Link href="/sitemap.xml">Sitemap</Link>
         <Link href="/robots.txt">Robots</Link>

@@ -1,5 +1,6 @@
 <script lang="ts">
   import { enhance } from '$app/forms';
+  import Button from '$lib/components/ui/button.svelte';
   export let data: { admin: { id: number; email: string } | null };
   let loginError = '';
   let registerError = '';
@@ -77,8 +78,8 @@
             <label class="block mb-1 text-sm" for="login-password">Password</label>
             <input id="login-password" name="password" type="password" required class="w-full rounded border px-3 py-2 text-sm" />
           </div>
-          {#if loginError}<p class="text-sm text-red-600">{loginError}</p>{/if}
-          <button type="submit" class="rounded bg-primary px-4 py-2 text-primary-foreground w-full">Login</button>
+          {#if loginError}<p class="text-sm">{loginError}</p>{/if}
+          <Button type="submit" size="w-full">Login</Button>
         </form>
       {:else if mode === 'register'}
         <form method="POST" action="?/register" use:enhance={onRegisterEnhance} class="space-y-4 p-4 border rounded">
@@ -94,9 +95,9 @@
             <label class="block mb-1 text-sm" for="reg-key">Registration Key</label>
             <input id="reg-key" name="key" type="text" required class="w-full rounded border px-3 py-2 text-sm" />
           </div>
-          {#if registerError}<p class="text-sm text-red-600">{registerError}</p>{/if}
+          {#if registerError}<p class="text-sm -600">{registerError}</p>{/if}
           {#if registerSuccess}<p class="text-sm">Registered! You may now login.</p>{/if}
-          <button type="submit" class="rounded bg-primary px-4 py-2 text-primary-foreground w-full">Register</button>
+          <Button type="submit" size="w-full">Register</Button>
         </form>
       {:else}
         <form method="POST" action="?/reset" use:enhance={onResetEnhance} class="space-y-4 p-4 border rounded">
@@ -112,8 +113,8 @@
             <label class="block mb-1 text-sm" for="reset-key">Registration Key</label>
             <input id="reset-key" name="key" type="text" required class="w-full rounded border px-3 py-2 text-sm" />
           </div>
-          {#if registerError}<p class="text-sm text-red-600">{registerError}</p>{/if}
-          <button type="submit" class="rounded bg-primary px-4 py-2 text-primary-foreground w-full">Reset Password</button>
+          {#if registerError}<p class="text-sm -600">{registerError}</p>{/if}
+          <Button type="submit" size="w-full">Reset Password</Button>
         </form>
       {/if}
     </div>

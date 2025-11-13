@@ -16,7 +16,7 @@
   <h1 class="mb-6 text-3xl font-bold">Terms and Conditions</h1>
   <div class="prose max-w-none">
     <p>
-      Please read these Terms and Conditions carefully before reserving a trailer from All State Trailer Rentals.
+      Please read these Terms and Conditions carefully before reserving a trailer from AllState Trailer Rentals.
       By clicking “I agree” you acknowledge that you have read, understood, and agree to be bound by these Terms.
     </p>
     <h3>Reservations</h3>

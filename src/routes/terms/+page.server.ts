@@ -27,7 +27,7 @@ export const load: ServerLoad = async ({ cookies }) => {
   return {
     alreadyAccepted,
     seo: {
-      title: "Terms & Conditions | All State Trailer Rentals",
+      title: "Terms & Conditions | AllState Trailer Rentals",
       description: "Read our rental terms and conditions before booking.",
     },
   };

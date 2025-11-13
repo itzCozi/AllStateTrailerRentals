@@ -64,7 +64,7 @@
 </script>
 
 <div
-  class="relative aspect-video overflow-hidden rounded-md bg-slate-100"
+  class="relative aspect-video overflow-hidden rounded-md bg-slate-100 border"
   role="group"
   aria-label="Image carousel"
   on:mouseenter={() => pauseOnHover && stopAutoplay()}
