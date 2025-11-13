@@ -74,6 +74,13 @@
     openDetails(b);
   }
 
+  function onCalendarDay(e: CustomEvent<{ date: string; bookings: typeof bookings }>) {
+    const { bookings: dayBookings } = e.detail || {} as any;
+    if (!dayBookings || dayBookings.length === 0) return;
+    // If multiple bookings exist for the day, open the first for now
+    openDetails(dayBookings[0]);
+  }
+
   $: selectedCount = selected.size;
   $: hasSelection = selectedCount > 0;
   $: noneLeft = bookings.length === 0;
@@ -139,8 +146,7 @@
   </div>
 
   <div class="mt-8">
-    <h2 class="mb-3 text-xl font-semibold">Monthly calendar</h2>
-    <BookingCalendar bookings={bookings} />
+    <BookingCalendar bookings={bookings} on:daySelect={onCalendarDay} />
   </div>
 
   <Modal bind:open={detailOpen} title={active ? `Booking #${active.id}` : 'Booking'} onClose={() => (detailOpen = false)} maxWidth="md">
