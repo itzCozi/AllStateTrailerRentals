@@ -78,7 +78,7 @@
   <header class="border-b bg-white/70 backdrop-blur">
     <div class="container flex h-16 items-center justify-between">
       <a href="/" class="flex items-center gap-2 font-semibold">
-        <span class="text-lg">All State Trailer Rentals</span>
+        <img src="/text.png" alt={siteName} class="h-10 sm:h-12 w-auto" />
       </a>
       <nav class="flex items-center gap-6 text-sm">
         <Link href="/booking">Book</Link>

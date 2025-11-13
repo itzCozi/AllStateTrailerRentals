@@ -5,7 +5,7 @@
   export let href: string | undefined = undefined;
   export let disabled = false;
 
-  const base = 'inline-flex items-center justify-center rounded-md font-medium disabled:opacity-50 disabled:pointer-events-none ring-offset-background duration-200 hover:shadow';
+  const base = 'inline-flex items-center justify-center rounded-md font-medium disabled:opacity-50 disabled:pointer-events-none ring-offset-background duration-200 shadow hover:shadow-lg';
   const variants = {
     default: 'bg-primary text-primary-foreground border hover:opacity-95',
     secondary: 'bg-secondary text-secondary-foreground border hover:bg-secondary/50',

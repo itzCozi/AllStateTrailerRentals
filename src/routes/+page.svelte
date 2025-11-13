@@ -153,7 +153,7 @@
   <div class="container grid gap-8 py-16 md:grid-cols-2 md:py-24">
     <div class="flex flex-col justify-center gap-6">
       <h1 class="text-4xl font-bold tracking-tight sm:text-5xl">All State Trailer Rentals</h1>
-      <p class="text-muted-foreground text-lg">Dump trailer, car hauler, and RV rentals serving NC and SC. Book online in minutes.</p>
+      <p class="text-muted-foreground text-lg">Dump trailer, car hauler, and RV rentals serving North Carolina and South Carolina. Book online in minutes.</p>
       <div class="flex gap-4">
         <Button href="/booking" size="lg">Book Now</Button>
         <Button href="#fleet" variant="outline" size="lg">View Fleet</Button>

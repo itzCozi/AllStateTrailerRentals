@@ -1,1 +1,8 @@
-[]
+[
+  {
+    "id": 1,
+    "email": "allstatetowingma@gmail.com",
+    "password_hash": "3d1eeeb244062e512a6a6c5757bed756:e2a0156147938c55f4f77b19ef827b80dca0e2d30b0412925bb859222a797cf0",
+    "created_at": "2025-11-13T18:54:07.196Z"
+  }
+]

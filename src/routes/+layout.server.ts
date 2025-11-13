@@ -1,4 +1,4 @@
-import type { LayoutServerLoad } from "@sveltejs/kit";
+import type { LayoutServerLoad } from "./$types";
 
 export const load: LayoutServerLoad = async ({ url }) => {
   const origin = url.origin;
@@ -8,7 +8,7 @@ export const load: LayoutServerLoad = async ({ url }) => {
   const defaults = {
     title: "Trailer Rentals in NC & SC | All State Trailer Rentals",
     description:
-      "Dump trailers, car haulers, and RV rentals serving NC and SC. Easy online booking.",
+      "Dump trailers, car haulers, and RV rentals serving North Carolina and South Carolina. Easy online booking.",
   };
 
   return {

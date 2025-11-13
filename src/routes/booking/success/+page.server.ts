@@ -1,6 +1,6 @@
-import type { ServerLoad } from "@sveltejs/kit";
+import type { PageServerLoad } from "./$types";
 
-export const load: ServerLoad = async () => {
+export const load: PageServerLoad = async () => {
   return {
     seo: {
       title: "Reservation Confirmed | All State Trailer Rentals",
