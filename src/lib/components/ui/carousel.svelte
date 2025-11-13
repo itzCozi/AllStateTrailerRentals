@@ -60,6 +60,7 @@
 
   $: if (autoplay) startAutoplay();
   $: preload(images?.[(currentIndex + 1) % (images?.length || 1)]);
+  $: preload(images?.[Math.max(0, (images?.length || 1) - 1)]);
 </script>
 
 <div
