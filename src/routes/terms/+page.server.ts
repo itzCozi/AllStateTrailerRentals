@@ -24,5 +24,11 @@ export const actions: Actions = {
 
 export const load: ServerLoad = async ({ cookies }) => {
   const alreadyAccepted = cookies.get(COOKIE_NAME) === "true";
-  return { alreadyAccepted };
+  return {
+    alreadyAccepted,
+    seo: {
+      title: "Terms & Conditions | All State Trailer Rentals",
+      description: "Read our rental terms and conditions before booking.",
+    },
+  };
 };

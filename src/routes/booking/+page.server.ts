@@ -9,5 +9,11 @@ export const load: ServerLoad = async ({ cookies, url }) => {
       "/terms?redirect=" + encodeURIComponent(url.pathname + url.search);
     throw redirect(303, to);
   }
-  return {};
+  return {
+    seo: {
+      title: "Book a Trailer | All State Trailer Rentals",
+      description:
+        "Reserve a dump trailer, car hauler, or RV online in minutes.",
+    },
+  };
 };

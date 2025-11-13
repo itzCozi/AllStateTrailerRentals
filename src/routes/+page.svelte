@@ -153,7 +153,7 @@
   <div class="container grid gap-8 py-16 md:grid-cols-2 md:py-24">
     <div class="flex flex-col justify-center gap-6">
       <h1 class="text-4xl font-bold tracking-tight sm:text-5xl">All State Trailer Rentals</h1>
-      <p class="text-muted-foreground text-lg">Dump trailer, car hauler, and RV rentals serving North Carolina and South Carolina. Book online in minutes.</p>
+      <p class="text-muted-foreground text-lg">Dump trailer, car hauler, and RV rentals serving NC and SC. Book online in minutes.</p>
       <div class="flex gap-4">
         <Button href="/booking" size="lg">Book Now</Button>
         <Button href="#fleet" variant="outline" size="lg">View Fleet</Button>
@@ -164,7 +164,16 @@
         <li>NC & SC coverage</li>
       </ul>
     </div>
-    <div class="aspect-video rounded-xl border bg-white shadow-sm"></div>
+    <div class="rounded-xl border bg-white shadow-sm overflow-hidden p-4 sm:p-6 flex items-center justify-center">
+      <img
+        src="/large.png"
+        alt="All State Trailer Rentals"
+        class="max-w-full h-auto object-contain"
+        loading="eager"
+        decoding="sync"
+        fetchpriority="high"
+      />
+    </div>
     <ul class="-mt-1 grid grid-cols-3 justify-items-center text-center gap-3 text-sm text-muted-foreground sm:hidden">
       <li>Same-day pickup</li>
       <li>Flexible scheduling</li>
@@ -201,7 +210,7 @@
   title="Image Preview"
   onClose={closeLightbox}
   maxWidth="lg"
-  maxHeightVh={70}
+  maxHeightVh={75}
   zIndex={70}
 >
   {#if lightboxImages.length}

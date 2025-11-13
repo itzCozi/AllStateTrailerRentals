@@ -1,15 +1,77 @@
 <script lang="ts">
   import '../app.css';
   import Link from '$lib/components/ui/link.svelte';
+  import { page } from '$app/stores';
+  
+  export let data: {
+    siteName: string;
+    origin: string;
+    path: string;
+    canonical: string;
+    seo?: { title?: string; description?: string; image?: string | null };
+  };
+
+  $: currentSeo = {
+    title: $page.data?.seo?.title ?? data.seo?.title ?? 'All State Trailer Rentals',
+    description: $page.data?.seo?.description ?? data.seo?.description ?? 'Dump trailers, car haulers, and RV rentals serving NC & SC. Book online.',
+    image: $page.data?.seo?.image ?? data.seo?.image ?? null
+  };
+  $: canonical = ($page.data?.canonical ?? data.canonical) as string;
+  $: ogUrl = data.origin + $page.url.pathname;
+  $: siteName = data.siteName;
+  $: jsonLdOrg = {
+    '@context': 'https://schema.org',
+    '@type': 'LocalBusiness',
+    name: siteName,
+    url: data.origin,
+    description: currentSeo.description,
+    areaServed: ['North Carolina', 'South Carolina']
+  };
+  $: jsonLdBreadcrumb = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: data.origin + '/' },
+      $page.url.pathname.startsWith('/booking') ? { '@type': 'ListItem', position: 2, name: 'Booking', item: data.origin + '/booking' } : null
+    ].filter(Boolean)
+  };
 </script>
 
 <svelte:head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="icon" href="/favicon.ico" />
+  <link rel="icon" type="image/png" href="/favicon.png" sizes="any" />
+  <link rel="apple-touch-icon" href="/large.png" />
   <meta name="theme-color" content="#1d4ed8" />
-  <meta name="description" content="All State Trailer Rentals - Dump trailers, car haulers, and RV rentals serving North Carolina and South Carolina. Book online." />
-  <link rel="canonical" href="https://www.allstatetrailers.com" />
+
+  <title>{currentSeo.title}</title>
+  <meta name="description" content={currentSeo.description} />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href={canonical} />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content={siteName} />
+  <meta property="og:title" content={currentSeo.title} />
+  <meta property="og:description" content={currentSeo.description} />
+  <meta property="og:url" content={ogUrl} />
+  {#if currentSeo.image}
+    <meta property="og:image" content={currentSeo.image} />
+    <meta property="og:image:alt" content={siteName} />
+  {/if}
+  <meta property="og:image" content={`${data.origin}/large.png`} />
+  <meta property="og:image:alt" content={siteName} />
+  <meta property="og:image" content={`${data.origin}/text.png`} />
+  <meta property="og:image:alt" content={siteName} />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={currentSeo.title} />
+  <meta name="twitter:description" content={currentSeo.description} />
+  <meta name="twitter:image" content={currentSeo.image ?? `${data.origin}/large.png`} />
+
+  <script type="application/ld+json">{JSON.stringify(jsonLdOrg)}</script>
+  {#if $page.url.pathname === '/' || $page.url.pathname.startsWith('/booking')}
+    <script type="application/ld+json">{JSON.stringify(jsonLdBreadcrumb)}</script>
+  {/if}
 </svelte:head>
 
 <div class="min-h-screen flex flex-col">
