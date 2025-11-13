@@ -56,3 +56,16 @@ export function getBookings(): Booking[] {
 }
 
 export type { Booking };
+
+export function deleteBooking(id: number): number {
+  return deleteBookings([id]);
+}
+
+export function deleteBookings(ids: number[]): number {
+  const set = new Set(ids.map((n) => Number(n)).filter((n) => Number.isFinite(n)));
+  if (set.size === 0) return 0;
+  const list = readAll();
+  const filtered = list.filter((b) => !set.has(b.id));
+  writeAll(filtered);
+  return list.length - filtered.length;
+}

@@ -48,7 +48,7 @@
 <section class="container py-10 max-w-3xl">
   {#if data.admin}
     <div class="space-y-4 text-center mx-auto max-w-md">
-      <p class="text-green-600">Logged in as {data.admin.email}</p>
+      <p>Logged in as {data.admin.email}</p>
       <a href="/admin/dashboard" class="inline-block rounded bg-primary px-4 py-2 text-primary-foreground mx-auto">Go to Dashboard</a>
     </div>
   {:else}
@@ -95,7 +95,7 @@
             <input id="reg-key" name="key" type="text" required class="w-full rounded border px-3 py-2 text-sm" />
           </div>
           {#if registerError}<p class="text-sm text-red-600">{registerError}</p>{/if}
-          {#if registerSuccess}<p class="text-sm text-green-600">Registered! You may now login.</p>{/if}
+          {#if registerSuccess}<p class="text-sm">Registered! You may now login.</p>{/if}
           <button type="submit" class="rounded bg-primary px-4 py-2 text-primary-foreground w-full">Register</button>
         </form>
       {:else}

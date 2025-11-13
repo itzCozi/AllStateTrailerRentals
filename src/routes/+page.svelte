@@ -136,13 +136,18 @@
         <Button href="/booking" size="lg">Book Now</Button>
         <Button href="#fleet" variant="outline" size="lg">View Fleet</Button>
       </div>
-      <ul class="mt-2 grid grid-cols-2 gap-3 text-sm text-muted-foreground sm:grid-cols-3">
+      <ul class="mt-2 hidden grid-cols-3 gap-3 text-sm text-muted-foreground sm:grid sm:grid-cols-3">
         <li>Same-day pickup</li>
         <li>Flexible scheduling</li>
         <li>NC & SC coverage</li>
       </ul>
     </div>
     <div class="aspect-video rounded-xl border bg-white shadow-sm"></div>
+    <ul class="-mt-1 grid grid-cols-3 justify-items-center text-center gap-3 text-sm text-muted-foreground sm:hidden">
+      <li>Same-day pickup</li>
+      <li>Flexible scheduling</li>
+      <li>NC & SC coverage</li>
+    </ul>
   </div>
   </section>
 
@@ -157,7 +162,7 @@
         <div class="mt-4">
           <div class="flex items-center justify-between">
             {#if item.variants}
-              <Button href={`${item.cta}&variant=${item.variants[variantIndex]?.label}`} variant="secondary">Reserve {item.title}</Button>
+              <Button href={`${item.cta}&variant=${item.variants[variantIndex]?.label}`} variant="secondary">Reserve</Button>
             {:else}
               <Button href={item.cta} variant="secondary">Reserve</Button>
             {/if}
@@ -211,14 +216,14 @@
             {#if active.variants}
               {#each Object.entries(active.variants[variantIndex].specs) as [k, v]}
                 <li class="flex items-start justify-between gap-4 rounded border p-2">
-                  <span class="text-slate-600">{k}</span>
+                  <span>{k}</span>
                   <span class="font-medium">{v}</span>
                 </li>
               {/each}
             {:else}
               {#each Object.entries(active.specs) as [k, v]}
                 <li class="flex items-start justify-between gap-4 rounded border p-2">
-                  <span class="text-slate-600">{k}</span>
+                  <span>{k}</span>
                   <span class="font-medium">{v}</span>
                 </li>
               {/each}

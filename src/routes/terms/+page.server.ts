@@ -15,7 +15,6 @@ export const actions: Actions = {
       path: "/",
       httpOnly: true,
       sameSite: "lax",
-      // 180 days
       maxAge: 60 * 60 * 24 * 180,
       secure: url.protocol === "https:"
     });

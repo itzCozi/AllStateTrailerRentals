@@ -1,5 +1,6 @@
 <script lang="ts">
   export let images: string[] = [];
+  import { ChevronLeft, ChevronRight } from 'lucide-svelte';
   
   let currentIndex = 0;
   
@@ -30,9 +31,7 @@
         class="absolute left-2 top-1/2 -translate-y-1/2 rounded-full bg-white/80 p-2 shadow-md transition border duration-300 hover:bg-white/95"
         aria-label="Previous image"
       >
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="15 18 9 12 15 6"></polyline>
-        </svg>
+        <ChevronLeft size={20} />
       </button>
       
       <button
@@ -40,9 +39,7 @@
         class="absolute right-2 top-1/2 -translate-y-1/2 rounded-full bg-white/80 p-2 shadow-md transition border duration-300 hover:bg-white/95"
         aria-label="Next image"
       >
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="9 18 15 12 9 6"></polyline>
-        </svg>
+        <ChevronRight size={20} />
       </button>
       
       <div class="absolute bottom-2 left-1/2 flex -translate-x-1/2 gap-2">

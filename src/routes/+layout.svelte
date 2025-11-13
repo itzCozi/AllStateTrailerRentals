@@ -19,7 +19,6 @@
         <span class="text-lg">All State Trailer Rentals</span>
       </a>
       <nav class="flex items-center gap-6 text-sm">
-        <Link href="/">Home</Link>
         <Link href="/booking">Book</Link>
         <Link href="/#fleet">Fleet</Link>
         <Link href="/#contact">Contact</Link>

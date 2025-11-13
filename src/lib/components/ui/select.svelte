@@ -1,6 +1,7 @@
 <script lang="ts">
   import { fade } from 'svelte/transition';
   import { onMount } from 'svelte';
+  import { ChevronDown, Check } from 'lucide-svelte';
 
   export let items: { value: string; label: string }[] = [];
   export let name: string | undefined = undefined;
@@ -90,9 +91,7 @@
   >
   <span>{selectedItemLabel ?? 'Select...'}</span>
     <!-- Chevron -->
-    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-2 opacity-70">
-      <polyline points="6 9 12 15 18 9" />
-    </svg>
+    <ChevronDown size={18} class="ml-2 opacity-70" />
   </button>
 
   {#if open}
@@ -115,9 +114,7 @@
         >
           <span class={`truncate ${i === highlightedIndex ? 'font-medium' : ''}`}>{item.label}</span>
           {#if item.value === bindValue}
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="20 6 9 17 4 12" />
-            </svg>
+            <Check size={16} />
           {/if}
         </li>
       {/each}

@@ -13,8 +13,8 @@ module.exports = {
         background: "hsl(210 20% 98%)",
         foreground: "hsl(222.2 47.4% 11.2%)",
         primary: {
-          DEFAULT: "hsl(142 71% 29%)", // forest green
-          foreground: "hsl(0 0% 100%)", // white for contrast
+          DEFAULT: "hsl(142 71% 29%)",
+          foreground: "hsl(0 0% 100%)",
         },
         secondary: {
           DEFAULT: "hsl(210 40% 96.1%)",

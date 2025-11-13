@@ -4,10 +4,11 @@ import {
   resetAdminPassword,
 } from "$lib/server/admin";
 import { readAdminKey } from "$lib/server/config";
+import { redirect } from "@sveltejs/kit";
 
 export const load = async ({ locals }: any) => {
   if (locals.admin) {
-    return { admin: locals.admin };
+    throw redirect(302, "/admin/dashboard");
   }
   return { admin: null };
 };
